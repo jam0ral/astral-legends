@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="menu-style.css">       
+</head>
+<body>
+    <audio id = "click-sound" src="sounds/Menu-Click.mp3"></audio>
+    <audio id = "menu-sound"src="sounds/Intro Bg Sound.mp3"></audio>
+    <audio id = "hover-menu" src="sounds/Selecting-Menu.mp3"></audio>
+        
+    <div id = "intro-video">
+        <video id = "video" src="introo.mp4" muted playsinline>
+            <source src="video.mp4" type="video/mp4">   
+        </video>
+
+<div id="continue-overlay">
+    Click to Continue
+</div>
+
+    </div>
+<div id = "main-content" style="display: none;">
+    <nav id="nav">
+        <div id="logo">
+            <p><br></p>
+        </div>
+            <ul>
+                <li><a href="leaderboard.html" class = "menu-button">LEADERBOARD</a></li>
+                <li><a href="#"class = "menu-button">SETTINGS</a></li>
+                <li><a href="about.html "class = "menu-button">ABOUT</a></li>
+            </ul>
+    </nav>
+0
+    <div id="main-menu">
+        <div id="game-title">
+            <h1 id="title1">ASTRAL</h1>
+            <h1 id="title2">LEGENDS</h1>
+            <div id="play-button">
+                <h2><a id = "play-link" href="#" class = "menu-button">PLAY</a></h2>
+            </div>
+        </div>
+        
+        <div id="spaceship">
+    <div class="spaceship-wrapper">
+        <img src="spaceship.png" alt="">
+    </div>
+     </div>
+
+    </div>
+</div>
+<script src="menu.js"></script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASTRAL LEGENDS</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .leaderboard-panel {
+            position: fixed;
+            right: 20px;
+            top: 100px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            border-radius: 10px;
+            color: white;
+            font-family: 'Arial', sans-serif;
+            min-width: 200px;
+            border: 2px solid #FFD700;
+            backdrop-filter: blur(5px);
+            z-index: 1000;            
+        }
+
+        .leaderboard-title {
+            text-align: center;
+            color: #FFD700;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            border-bottom: 2px solid #FFD700;
+            padding-bottom: 5px;
+        }
+
+        .leaderboard-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .leaderboard-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .rank-1 {
+            color: #FFD700; /* Gold */
+        }
+
+        .rank-2 {
+            color: #C0C0C0; /* Silver */
+        }
+
+        .rank-3 {
+            color: #CD7F32; /* Bronze */
+        }
+
+        .player-name {
+            margin-right: 10px;
+        }
+
+        .player-score {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<audio id="ingame-sound" src="sounds/In Game Sound.mp3" autoplay loop></audio>
+<audio id="menu-press" src="sounds/Menu-Back.mp3"></audio>
+<audio id="hover-menu" src="sounds/Selecting-Menu.mp3"></audio>
+
+    <div class="background-overlay"></div>
+    <div class="wrap" id="game">
+        <div class="home-menu" id="home-menu">
+            <button class="home-btn"><a href="menu.html">&#8962; Home</a></button>
+        </div>
+        <header style="font-size: 50px; font-weight: bold; font-family:'Times New Roman', Times, serif5">👾</header>
+        <div class="game-wrapper">
+            <div class="main"></div>
+        </div>
+
+        <!-- Leaderboard Panel -->
+        <div class="leaderboard-panel">
+            <div class="leaderboard-title">Top Scores</div>
+            <ul class="leaderboard-list" id="leaderboard-list">
+                <!-- Scores will be dynamically inserted here -->
+            </ul>
+        </div>
+
+        <audio src="retro-laser-1-236669.mp3" preload="auto"></audio>
+        <script src="main.js"></script>
+        <footer></footer>
+    </div>
+
+    <script>
+        // Function to update the leaderboard display
+        function updateInGameLeaderboard() {
+            const leaderboardList = document.getElementById('leaderboard-list');
+            const scores = JSON.parse(localStorage.getItem('gameScores') || '[]');
+            
+            // Sort scores in descending order
+            scores.sort((a, b) => b.score - a.score);
+            
+            // Take top 5 scores
+            const topScores = scores.slice(0, 5);
+            
+            // Clear current leaderboard
+            leaderboardList.innerHTML = '';
+            
+            if (topScores.length === 0) {
+                const li = document.createElement('li');
+                li.className = 'leaderboard-item';
+                li.textContent = 'No scores yet';
+                leaderboardList.appendChild(li);
+                return;
+            }
+
+            // Add scores to leaderboard
+            topScores.forEach((score, index) => {
+                const li = document.createElement('li');
+                li.className = `leaderboard-item rank-${index + 1}`;
+                li.innerHTML = `
+                    <span class="player-name">${index + 1}. ${score.player || 'Anonymous'}</span>
+                    <span class="player-score">${score.score.toLocaleString()}</span>
+                `;
+                leaderboardList.appendChild(li);
+            });
+        }
+
+        // Update leaderboard initially and every 5 seconds
+        updateInGameLeaderboard();
+        setInterval(updateInGameLeaderboard, 5000);
+    </script>
+</body>
+</html>

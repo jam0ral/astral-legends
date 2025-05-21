@@ -1,0 +1,193 @@
+body {
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  font: 16px sans-serif;
+  color: rgb(105, 155, 58);
+  background-image: url('img/background.gif');
+  background-repeat: repeat-x;
+  background-position: 0 0;
+ background-size: auto 100%; 
+ animation: move-background-left 60s linear infinite;
+}
+
+.background-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('img/background.gif');
+  background-repeat: repeat-x;
+  background-position: 0 0;
+  background-size: auto 100%;
+  animation: move-background-left 60s linear infinite;
+
+  z-index: -1;
+  pointer-events: none;
+}
+
+.background-overlay::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0, 0, 0, 0.452); /* adjust darkness */
+  pointer-events: none; 
+}
+
+
+
+:root {
+  --bg-speed: 5s;
+}
+.wrap {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  background: transparent;
+}
+
+.game-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.main {
+  position: relative;
+  width: 100vw;
+  height:80vh;
+  background: transparent;
+  background-size: cover;
+  background-repeat: repeat;
+  animation: scroll-background 5s linear infinite;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: 10px;
+  z-index: 1000;
+  margin-bottom: 0;
+  border-radius: 0;
+}
+
+#home-menu a{
+  text-decoration: none;
+  color: white;
+}
+footer {
+  padding: 10px;
+  text-align: center;
+  font-size: 11px;
+  background: black;
+  color: white;
+}
+
+@keyframes scroll-background {
+  from {
+    background-position-y: 0px;
+  }
+  to {
+    background-position-y: 256px;
+  }
+}
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.main .player {
+  position: absolute;
+  transform-origin: center center;
+  transition: transform 0.1s ease-out;
+  animation: spaceship-hover 2s infinite ease-in-out;
+  filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.7));
+}
+
+@keyframes spaceship-hover {
+  0% {
+    transform: translateY(0px) rotate(var(--tilt, 0deg));
+  }
+  50% {
+    transform: translateY(-5px) rotate(var(--tilt, 0deg));
+  }
+  100% {
+    transform: translateY(0px) rotate(var(--tilt, 0deg));
+  }
+}
+
+.main .laser {
+  position: absolute;
+  margin-left: -2.5px;
+  height: 30px;
+  z-index: 2;
+}
+
+.main .enemy{
+  position: absolute;
+}
+
+.main .enemyLaser {
+  position: absolute;
+  margin-left: -2.5px;
+  height: 25px;
+  z-index: 2;
+}
+
+#level-display {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-size: 24px;
+  z-index: 10;
+}
+
+.home-menu {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 1100;
+}
+
+.home-btn {
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 22px;
+  font-size: 20px;
+  font-family: 'Segoe UI', sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  transition: background 0.2s, transform 0.2s;
+}
+
+.home-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffe066;
+  transform: scale(1.05);
+}
+
+@keyframes move-background-left{
+     from {background-position: 0 0;}
+    to {background-position: -10000px 0;}
+}
+
+
+
+

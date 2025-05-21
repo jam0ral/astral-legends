@@ -1,0 +1,157 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+@font-face {
+    font-family: DisketMono;
+    src: url('./fonts/PIXELOPERATORMONOHB8.TTF') format('opentype');
+}
+
+@font-face {
+    font-family: VCR;
+    src: url('./fonts/VCR_OSD_MONO_1.001.ttf') format('opentype');
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background-image: url('img/background.gif');
+    background-repeat: repeat-x;
+    background-position: 0 0;
+    background-size: auto 100%; 
+    animation: move-background-left var(--bg-speed) linear infinite;
+}
+
+html{
+    scrollbar-width: none;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 165px;
+}
+
+header h1{
+    font-family: VCR;
+    text-shadow: 3px 2px 4px #7ad8f5;
+    letter-spacing:10px;
+    font-size: 75px;
+}
+
+header h1:hover{
+    border-bottom: 3px;
+    text-decoration: underline;
+}
+
+header a{
+    text-decoration: none;
+    color: black;
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    color:#7ad8f5;
+    text-shadow: 1px 0 0;
+    align-items: center;
+    padding: 30px;
+    width: 100%;
+}
+
+.content-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-color: #14162C;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 800px;
+    text-align: center;
+}
+
+
+h2{
+    text-shadow: 2px 2px 0 #bcd368;
+    margin-bottom: 10px;
+    color: #ffffff;
+    text-decoration: underline;
+    font-size: 35px;
+}
+ 
+ul li{
+    margin-bottom: 8px;
+    list-style: none;
+    font-family: DisketMono;
+    font-size: 16px;
+}
+
+.text-box p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+    font-family: DisketMono;
+    font-size: 16px;
+}
+
+#play-button h2 a{
+    font-family: VCR;
+    text-decoration: none;
+    font-size: 80px;
+    color: black;
+    text-shadow: 5px 3px 0 #7ad8f5;
+    text-decoration: underline; 
+}
+
+#spaceship {
+    position: relative;
+    width: 100%;
+    height: 100px; /* adjust height as needed */
+    margin-top: 30px;
+    overflow: hidden;
+}
+
+.spaceship-wrapper {
+    position: absolute;
+    top: 0;
+    left: -100px; /* start off-screen */
+    animation: fly-right 10s linear infinite;
+}
+
+.spaceship-wrapper img {
+    width: 80px; /* Resize the spaceship */
+    height: auto;
+}
+
+
+
+@keyframes fly-right {
+    0% {
+        left: -100px;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+
+@keyframes move-background-left{
+     from {background-position: 0 0;}
+    to {background-position: -10000px 0;}
+}
+
+:root {
+  --bg-speed: 60s;
+}
